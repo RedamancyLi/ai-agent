@@ -1,0 +1,29 @@
+{
+  "name": "ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "agent.js",
+  "scripts": {
+    "start": "node agent.js",
+    "ui": "node server.js",
+    "ui:vanilla": "node server.js",
+    "build:client": "npm run build --prefix client",
+    "dev": "npm run build:client && node server.js",
+    "dev:hot": "concurrently -k -n server,client -c blue,green \"node server.js\" \"npm run dev --prefix client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "node-fetch": "^3.3.2",
+    "openai": "^3.3.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}

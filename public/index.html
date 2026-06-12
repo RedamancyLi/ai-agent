@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Agent 控制台</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-icon">◇</span>
+          <div>
+            <h1>AI Agent</h1>
+            <p class="brand-sub">流式 · 工具确认 · 执行链路</p>
+          </div>
+        </div>
+
+        <section class="panel">
+          <h2>连接状态</h2>
+          <div id="status" class="status loading">检测中…</div>
+          <dl class="meta" id="meta"></dl>
+        </section>
+
+        <section class="panel">
+          <h2>系统提示词</h2>
+          <textarea
+            id="systemPrompt"
+            rows="4"
+            placeholder="定义助手行为…"
+          ></textarea>
+        </section>
+
+        <section class="panel">
+          <h2>工具策略</h2>
+          <label class="toggle">
+            <input type="checkbox" id="autoApprove" />
+            <span>自动执行工具（跳过确认）</span>
+          </label>
+          <p class="toggle-hint">关闭时，模型调用工具前需你点击允许</p>
+        </section>
+
+        <section class="panel panel-grow">
+          <h2>已注册工具 <span id="toolCount" class="badge">0</span></h2>
+          <ul id="toolList" class="tool-list"></ul>
+        </section>
+
+        <button type="button" id="clearBtn" class="btn btn-ghost">
+          清空对话
+        </button>
+      </aside>
+
+      <main class="chat">
+        <header class="chat-header">
+          <h2>对话</h2>
+          <span id="duration" class="duration hidden"></span>
+        </header>
+
+        <div id="messages" class="messages">
+          <div class="welcome">
+            <p>你好，我是带工具的 AI Agent。</p>
+            <p class="hint">试试：<button type="button" class="chip" data-prompt="上海天气怎么样？">查天气</button>
+            <button type="button" class="chip" data-prompt="现在几点了？">当前时间</button>
+            <button type="button" class="chip" data-prompt="计算 (12+8)*3">计算器</button></p>
+          </div>
+        </div>
+
+        <form id="chatForm" class="composer">
+          <textarea
+            id="input"
+            rows="1"
+            placeholder="输入消息，Enter 发送，Shift+Enter 换行…"
+            autocomplete="off"
+          ></textarea>
+          <button
+            type="button"
+            id="stopBtn"
+            class="btn btn-stop hidden"
+            title="停止生成"
+          >
+            停止
+          </button>
+          <button type="submit" id="sendBtn" class="btn btn-primary" disabled>
+            发送
+          </button>
+        </form>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
